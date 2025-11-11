@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>生日快乐呀！</title>
+    <style>
+        body { margin: 0; padding: 0; background: #fdf2f8; font-family: 'Arial', sans-serif; }
+        .bless-box {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: white; padding: 40px 60px; border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.3); text-align: center;
+            animation: bounce 0.8s ease;
+        }
+        .title { color: #e53e3e; font-size: 36px; margin-bottom: 20px; }
+        .content { color: #4a5568; font-size: 20px; line-height: 1.6; }
+        @keyframes bounce {
+            0% { transform: translate(-50%, -80%); opacity: 0; }
+            60% { transform: translate(-50%, -45%); opacity: 1; }
+            100% { transform: translate(-50%, -50%); }
+        }
+        .confetti { position: fixed; width: 10px; height: 10px; background: #ffc107; animation: fall 5s linear infinite; }
+    </style>
+</head>
+<body>
+    <div class="bless-box">
+        <div class="title">🎂 张馨怡生日快乐！</div>
+        <div class="content">
+            愿你每天都开开心心<br>
+            心想事成，好运爆棚<br>
+            所有愿望都能实现呀～<br>
+            永远做自己想做的事！
+        </div>
+    </div>
+
+    <script>
+        // 弹出提示框（双重祝福）
+        window.onload = function() {
+            setTimeout(() => {
+                alert("🎉 生日快乐！祝你新的一岁平安喜乐，万事顺意～");
+            }, 500);
+
+            // 生成彩色纸屑效果
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = ['#ff0000', '#ff9900', '#ffff00', '#00ff00', '#0099ff', '#9900ff'][Math.floor(Math.random() * 6)];
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                confetti.style.opacity = Math.random() * 0.5 + 0.5;
+                document.body.appendChild(confetti);
+            }
+        };
+
+        // 纸屑下落动画
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                0% { transform: translateY(-10px) rotate(0deg); }
+                100% { transform: translateY(100vh) rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
